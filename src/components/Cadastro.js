@@ -15,6 +15,9 @@ const Cadastro = () =>{
                 <div className="col-md-5">
                     <Formulario/>
                 </div>
+                <div>
+                    <h2>Lista de cadastros</h2>
+                </div>
             </div>
 
         </div>
