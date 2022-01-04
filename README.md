@@ -1,2 +1,2 @@
 # Crud-React
-Crud feito em React para estudos, seguindo a playlist: https://www.youtube.com/watch?v=pCkw6b5HRkM&list=PLw608KLEKJz_n7WJc0Q8YPzvA-hYPeXRU
+Crud feito em React para estudos, seguindo a playlist: https://www.youtube.com/watch?v=pCkw6b5HRkM&list=PLw608KLEKJz_n7WJc0Q8YPzvA-hYPeXRU, porém utilizando o JSON-server com axios para o armazenamento e utilização do banco de dados
