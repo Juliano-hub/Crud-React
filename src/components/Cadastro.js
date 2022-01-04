@@ -1,7 +1,14 @@
 import React from 'react'
+import axios from 'axios'
 import Formulario from './Formulario'
 
 const Cadastro = () =>{
+
+    const AddEdit = obj =>{
+        console.log(obj)
+        axios.post('http://localhost:3000/Cadastro', obj)
+    }
+
     return(
         <div>
             <div className="jumbotron jumbotron-fluid">
@@ -13,7 +20,7 @@ const Cadastro = () =>{
 
             <div className="row">
                 <div className="col-md-5">
-                    <Formulario/>
+                    <Formulario AddEdit= {AddEdit}/>
                 </div>
                 <div>
                     <h2>Lista de cadastros</h2>

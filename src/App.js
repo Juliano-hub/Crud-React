@@ -1,4 +1,9 @@
 import logo from './logo.svg';
+
+// npm start 
+// json-server --watch src/database/database.json
+// json-server --watch database.json
+
 import Cadastro from './components/Cadastro'
 import './App.css';
 

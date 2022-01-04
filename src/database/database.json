@@ -1,0 +1,34 @@
+{
+  "Cadastro": [
+    {
+      "id": 1,
+      "Nome": "AA",
+      "Idade": "30",
+      "Email": "AA@gmail.com"
+    },
+    {
+      "id": 2
+    },
+    {
+      "id": 3
+    },
+    {
+      "id": 4
+    },
+    {
+      "obj": {
+        "Nome": "",
+        "Idade": "",
+        "Email": "",
+        "undefined": "d"
+      },
+      "id": 5
+    },
+    {
+      "Nome": "teste01",
+      "Idade": "2022-01-28",
+      "Email": "teste01@gmail.com",
+      "id": 6
+    }
+  ]
+}

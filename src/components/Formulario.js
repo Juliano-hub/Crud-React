@@ -1,29 +1,31 @@
 import React, {useState} from 'react'
+import './Cadastro'
 
-const Formulario = () =>{
+const Formulario = (props) =>{
     const Dados = {
         Nome: '',
         Idade: '',
         Email: ''
     }
 
-    let {values, setValues} = useState(Dados)
+    let [values, setValues] = useState(Dados)
 
     const ReceiveInput = e =>{
-        let {Nome, value} = e.target
+        let {name, value} = e.target
 
         setValues({
             ...values,
-            [Nome]: value
+            [name]: value
         })
     }
 
     const EnviarInput = e =>{
         e.preventDefault()
+        props.AddEdit(values)
     }
 
     return(
-        <form autoComplete="off" onSubmit="{EnviarInput}">
+        <form autoComplete="off" onSubmit={EnviarInput}>
         
             {/* Campo nome */}
             <div className="row">
@@ -35,7 +37,7 @@ const Formulario = () =>{
                         </div>
                     </div>
                     <label for="Idade">Nome:</label>
-                    <input type="text" className="form-control" placeholder="Digite seu nome" name="Campo Nome" value={values.Nome} 
+                    <input type="text" className="form-control" placeholder="Digite seu nome" name="Nome" value={values.Nome} 
                     onChange={ReceiveInput}/>
                 </div>
             </div>
@@ -49,7 +51,7 @@ const Formulario = () =>{
                         </div>
                     </div>
                     <label for="Idade">Idade:</label>
-                    <input type="date" className="form-control" name="Campo Idade" value={values.Idade} 
+                    <input type="date" className="form-control" name="Idade" value={values.Idade} 
                     onChange={ReceiveInput}/>
                 </div>
             </div>
@@ -63,10 +65,14 @@ const Formulario = () =>{
                         </div>
                     </div>
                     <label for="Idade">E-mail:</label>
-                    <input type="email" className="form-control" placeholder="exemplo@gmail.com" name="Campo Email" value={values.Email} 
+                    <input type="email" className="form-control" placeholder="exemplo@gmail.com" name="Email" value={values.Email} 
                     onChange={ReceiveInput}/>
                 </div>
             </div>
+        
+        <div className="form-group">
+            <input type="submit" value="Enviar" className="btn btn-primary btn-block"></input>
+        </div>
 
         </form>
     )
