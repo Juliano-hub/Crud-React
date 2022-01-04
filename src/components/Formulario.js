@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import './Cadastro'
 
 const Formulario = (props) =>{
@@ -10,6 +10,19 @@ const Formulario = (props) =>{
 
     let [values, setValues] = useState(Dados)
 
+    useEffect(() =>{       
+        if(props.IdAtual === ''){
+            setValues({
+                ...Dados
+            })
+        }else{
+            setValues({
+                ...props.DadosBanco[props.IdAtual]
+            })           
+        }
+    }, [props.IdAtual, props.DadosBanco])
+
+    
     const ReceiveInput = e =>{
         let {name, value} = e.target
 
@@ -71,7 +84,7 @@ const Formulario = (props) =>{
             </div>
         
         <div className="form-group">
-            <input type="submit" value="Enviar" className="btn btn-primary btn-block"></input>
+            <input type="submit" value={props.IdAtual === '' ? "Enviar" : "Salvar"} className="btn btn-primary btn-block"></input>
         </div>
 
         </form>

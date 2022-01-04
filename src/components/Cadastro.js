@@ -17,8 +17,24 @@ const Cadastro = () =>{
     }, [])
 
     const AddEdit = obj =>{
-        console.log(obj)
-        axios.post(url, obj)
+        console.log('ID aQ:')
+        console.log(IdAtual)
+        if(IdAtual === ''){
+            console.log(obj)
+            axios.post(url, obj)
+        }else{
+            axios.patch(`${url}/${IdAtual + 1}/`, obj)
+        }
+
+    }
+
+    let[IdAtual, setIdAtual] = useState('')
+
+    function ColocarId(e, id){
+        e.preventDefault()
+        console.log('ID')
+        console.log(id)
+        setIdAtual(id)
     }
 
     return(
@@ -32,7 +48,7 @@ const Cadastro = () =>{
 
             <div className="row">
                 <div className="col-md-5">
-                    <Formulario AddEdit= {AddEdit}/>
+                    <Formulario {...({AddEdit, IdAtual, DadosBanco})}/>
                 </div>
 
                 <div className="col-md-7">
@@ -51,6 +67,19 @@ const Cadastro = () =>{
                                         <td>{DadosBanco[id].Nome}</td>
                                         <td>{DadosBanco[id].Idade}</td>
                                         <td>{DadosBanco[id].Email}</td>
+
+                                        <td>
+                                            <a href="/" className="btn btn-primary" onClick={e => ColocarId(e, id)} >
+                                                <i className="fa fa-pencil"></i>
+                                            </a>
+                                        </td>
+
+                                        <td>
+                                            <a href="/" className="btn btn-primary">
+                                                <i className="fa fa-trash-can"></i>
+                                            </a>
+                                        </td>
+
                                     </tr>
                                 })
                             }
