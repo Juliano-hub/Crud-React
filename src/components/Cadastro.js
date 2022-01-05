@@ -13,28 +13,38 @@ const Cadastro = () =>{
             const response = await axios(url)
             setDadosBanco(response.data)
         }
-        axiosBD()
+        if(axiosBD != null){
+            setDadosBanco({
+                ...axiosBD
+            })
+        }else{
+            setDadosBanco({})
+        }
+
     }, [])
 
     const AddEdit = obj =>{
-        console.log('ID aQ:')
-        console.log(IdAtual)
+        console.log('ID no main:' ,IdAtual)
         if(IdAtual === ''){
             console.log(obj)
             axios.post(url, obj)
         }else{
-            axios.patch(`${url}/${IdAtual + 1}/`, obj)
+            axios.patch(`${url}/${parseInt(IdAtual) + 1}/`, obj)
         }
 
     }
 
     let[IdAtual, setIdAtual] = useState('')
 
-    function ColocarId(e, id){
+    function ColocarId(e, IdAtual){
         e.preventDefault()
-        console.log('ID')
-        console.log(id)
-        setIdAtual(id)
+        console.log('ID de quem vai ser editado', IdAtual)
+        setIdAtual(IdAtual)
+    }
+
+    function Remover(IdAtual){
+        console.log('ID para remover', parseInt(IdAtual) + 1)
+        axios.delete(`${url}/${parseInt(IdAtual) + 1}/`)
     }
 
     return(
@@ -42,7 +52,7 @@ const Cadastro = () =>{
             <div className="jumbotron jumbotron-fluid">
                 <div className="container">
                     <h1 className="display-4">Cadastro</h1>
-                    <p className="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+                    <p className="lead">Lista dos ganhadores da mega cena da virada teste resctJS</p>
                 </div>
             </div>
 
@@ -75,7 +85,7 @@ const Cadastro = () =>{
                                         </td>
 
                                         <td>
-                                            <a href="/" className="btn btn-primary">
+                                            <a href="/" className="btn btn-primary " onClick={Remover(id)}>
                                                 <i className="fa fa-trash-can"></i>
                                             </a>
                                         </td>

@@ -11,7 +11,7 @@ const Formulario = (props) =>{
     let [values, setValues] = useState(Dados)
 
     useEffect(() =>{       
-        if(props.IdAtual === ''){
+        if(props.IdAtual == ''){
             setValues({
                 ...Dados
             })
@@ -38,7 +38,7 @@ const Formulario = (props) =>{
     }
 
     return(
-        <form autoComplete="off" onSubmit={EnviarInput}>
+        <form autoComplete="off" onSubmit={e => EnviarInput(e)}>
         
             {/* Campo nome */}
             <div className="row">
@@ -83,9 +83,9 @@ const Formulario = (props) =>{
                 </div>
             </div>
         
-        <div className="form-group">
-            <input type="submit" value={props.IdAtual === '' ? "Enviar" : "Salvar"} className="btn btn-primary btn-block"></input>
-        </div>
+            <div className="form-group">
+                <input type="submit" value={props.IdAtual === '' ? "Enviar" : "Salvar"} className="btn btn-primary btn-block"></input>
+            </div>
 
         </form>
     )
