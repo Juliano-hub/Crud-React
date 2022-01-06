@@ -13,38 +13,34 @@ const Cadastro = () =>{
             const response = await axios(url)
             setDadosBanco(response.data)
         }
-        if(axiosBD != null){
-            setDadosBanco({
-                ...axiosBD
-            })
-        }else{
-            setDadosBanco({})
-        }
-
+        axiosBD()
     }, [])
 
     const AddEdit = obj =>{
-        console.log('ID no main:' ,IdAtual)
+        console.log('ID aQ:')
+        console.log(IdAtual)
         if(IdAtual === ''){
             console.log(obj)
             axios.post(url, obj)
         }else{
-            axios.patch(`${url}/${parseInt(IdAtual) + 1}/`, obj)
+            axios.patch(`${url}/${parseInt(obj.id)}/`, obj)
         }
 
+        this.forceUpdate()
     }
 
     let[IdAtual, setIdAtual] = useState('')
 
-    function ColocarId(e, IdAtual){
+    function ColocarId(e, id){
         e.preventDefault()
-        console.log('ID de quem vai ser editado', IdAtual)
-        setIdAtual(IdAtual)
+        console.log('ID')
+        console.log(id)
+        setIdAtual(id)
     }
 
     function Remover(IdAtual){
         console.log('ID para remover', parseInt(IdAtual) + 1)
-        axios.delete(`${url}/${parseInt(IdAtual) + 1}/`)
+        axios.delete(`${url}/${parseInt(IdAtual)}/`)
     }
 
     return(
@@ -52,7 +48,7 @@ const Cadastro = () =>{
             <div className="jumbotron jumbotron-fluid">
                 <div className="container">
                     <h1 className="display-4">Cadastro</h1>
-                    <p className="lead">Lista dos ganhadores da mega cena da virada teste resctJS</p>
+                    <p className="lead">Teste e exercício de reactJS CRUD</p>
                 </div>
             </div>
 
@@ -64,10 +60,12 @@ const Cadastro = () =>{
                 <div className="col-md-7">
                     <table className="table table-striped">
 
-                        <thead>
+                        <thead> 
+                        <tr>
                             <td>Nome</td>
                             <td>Idade</td>
                             <td>E-mail</td>
+                        </tr> 
                         </thead>
 
                         <tbody>
@@ -85,7 +83,7 @@ const Cadastro = () =>{
                                         </td>
 
                                         <td>
-                                            <a href="/" className="btn btn-primary " onClick={Remover(id)}>
+                                            <a href="/" className="btn btn-primary" onClick={() => Remover(DadosBanco[id].id)}>
                                                 <i className="fa fa-trash-can"></i>
                                             </a>
                                         </td>

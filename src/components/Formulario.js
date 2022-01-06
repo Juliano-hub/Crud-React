@@ -11,7 +11,7 @@ const Formulario = (props) =>{
     let [values, setValues] = useState(Dados)
 
     useEffect(() =>{       
-        if(props.IdAtual == ''){
+        if(props.IdAtual === ''){
             setValues({
                 ...Dados
             })
@@ -38,7 +38,7 @@ const Formulario = (props) =>{
     }
 
     return(
-        <form autoComplete="off" onSubmit={e => EnviarInput(e)}>
+        <form autoComplete="off" onSubmit={EnviarInput}>
         
             {/* Campo nome */}
             <div className="row">
@@ -49,7 +49,7 @@ const Formulario = (props) =>{
                             <i className="fas fa-user"></i>
                         </div>
                     </div>
-                    <label for="Idade">Nome:</label>
+                    <label htmlFor="Idade">Nome:</label>
                     <input type="text" className="form-control" placeholder="Digite seu nome" name="Nome" value={values.Nome} 
                     onChange={ReceiveInput}/>
                 </div>
@@ -63,7 +63,7 @@ const Formulario = (props) =>{
                             <i className="far fa-address-book"></i>
                         </div>
                     </div>
-                    <label for="Idade">Idade:</label>
+                    <label htmlFor="Idade">Data de nascimento:</label>
                     <input type="date" className="form-control" name="Idade" value={values.Idade} 
                     onChange={ReceiveInput}/>
                 </div>
@@ -77,15 +77,15 @@ const Formulario = (props) =>{
                             <i className="fas fa-envelope-square"></i>
                         </div>
                     </div>
-                    <label for="Idade">E-mail:</label>
+                    <label htmlFor="Idade">E-mail:</label>
                     <input type="email" className="form-control" placeholder="exemplo@gmail.com" name="Email" value={values.Email} 
                     onChange={ReceiveInput}/>
                 </div>
             </div>
         
-            <div className="form-group">
-                <input type="submit" value={props.IdAtual === '' ? "Enviar" : "Salvar"} className="btn btn-primary btn-block"></input>
-            </div>
+        <div className="form-group">
+            <input type="submit" value={props.IdAtual === '' ? "Enviar" : "Salvar"} className="btn btn-primary btn-block"></input>
+        </div>
 
         </form>
     )
