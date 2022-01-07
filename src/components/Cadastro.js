@@ -26,7 +26,7 @@ const Cadastro = () =>{
             axios.patch(`${url}/${parseInt(obj.id)}/`, obj)
         }
 
-        this.forceUpdate()
+        window.location.reload(true)
     }
 
     let[IdAtual, setIdAtual] = useState('')
